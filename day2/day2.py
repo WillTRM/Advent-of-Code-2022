@@ -2,7 +2,7 @@ opp = []
 you = []
 score = 0
 
-with open("day2input") as file:
+with open("day2input.txt") as file:
     inpt = [line.rstrip() for line in file]
     
 for i in range(len(inpt)):
