@@ -1,5 +1,9 @@
 import re
 import numpy
+import os
+import time
+
+toggledisplay = 1
 
 with open("day5input.txt") as file:
     instruct = [line.rstrip() for line in file]
@@ -29,6 +33,11 @@ field = numpy.pad(field, [(48, 0), (0, 0)], mode = "constant", constant_values =
 
 for i in range(len(instruct)):
     instruct[i] = re.findall("\d+", instruct[i])
+       
+def showfield(display):
+    os.system("printf '\033c'")
+    print(display)
+    time.sleep(0.01)
 
 if int(input("1 for part 1, 2 for part 2: ")) == 1:
     for j in range(len(instruct)):
@@ -45,11 +54,14 @@ if int(input("1 for part 1, 2 for part 2: ")) == 1:
                     break
             claw -= 1
             field[claw][int(instruct[j][2]) - 1] = grabbed
+        if toggledisplay == 1:
+            showfield(field)
     for i in range(9):
         claw = 0
         while field[claw][i] == "":
             claw += 1
         print(field[claw][i], end = "")
+    
 else:
     for j in range(len(instruct)):
         for i in range(int(instruct[j][0])):
@@ -67,6 +79,8 @@ else:
             claw -= 1
             field[claw][int(instruct[j][2]) - 1] = stack[-1]
             stack.pop(-1)
+        if toggledisplay == 1:
+            showfield(field)
     for i in range(9):
         claw = 0
         while field[claw][i] == "":
