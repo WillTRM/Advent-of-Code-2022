@@ -1,7 +1,7 @@
 import re
 import numpy
 
-with open("day5input") as file:
+with open("day5input.txt") as file:
     instruct = [line.rstrip() for line in file]
     
 field = []
